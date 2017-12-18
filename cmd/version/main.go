@@ -28,11 +28,11 @@ func main() {
 
 	previous, err := repository.CurrentVersion()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalln("Could not retrieve previous version:", err)
 	}
 
 	if !previous.Dirty {
-		log.Fatalln("No changes since last version:", previous)
+		log.Println("No changes since last version:", previous)
 		return
 	}
 
@@ -45,7 +45,7 @@ func main() {
 
 	err = repository.UpdateVersion(current)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalln("Could not update version:", err)
 	}
 
 	log.Printf("%v -> %v", previous, current)
